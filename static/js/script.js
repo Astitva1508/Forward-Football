@@ -1,3 +1,4 @@
+let radarChart;
 document.addEventListener('DOMContentLoaded', function () {
     fetch('/get_data')
         .then(response => response.json())
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
             renderPassingPressureChart(data);
             renderBallControlPressureChart(data);
             renderPlayerCards(data[0]);
+            renderRadarChart(data[0]);
         })
         .catch(error => console.error('Error fetching data:', error));
 });
@@ -155,13 +157,13 @@ $('#searchInput').on('input', function (e)
 
                 // Render filtered player cards
                 renderPlayerCards(filteredPlayers[0]);
+                renderRadarChart(filteredPlayers[0])
                
             })
             .catch(error => console.error('Error fetching data:', error)); 
 });
 
 function renderPlayerCards(player) {
-    console.log(player);
     $('#playerCard').empty();
     $('#playerCard').append(playerCard(player));
 };
@@ -171,16 +173,16 @@ function playerCard(player){
         `
 <div class="card player-card">
     <img src="/static/data/player_image.jpg" class="card-img-top player-img" alt="Image Not Found">
-    <h5 class="card-title">${player.Player}</h5>
     <div class="card-body">
+    <h5 class="card-title">${player.Player}</h5>
 <div class="accordion" id="parentAccordion">
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         General Stats
     </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#parentAccordion">
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#parentAccordion">
       <div class="accordion-body">
         <p><strong>Position:</strong> ${player.Position}</p>
         <p><strong>Team:</strong> ${player.Team}</p>
@@ -235,4 +237,53 @@ function playerCard(player){
 </div>
 `;
     return playerCardHtml;
+}
+
+async function renderRadarChart(player) {
+        if(radarChart) radarChart.destroy();
+        const radarChartCanvas = document.getElementById('radarChart');
+        // Fetch percentile data from API
+        const response = await fetch(`/percentiles?id=${player['id']}`);
+        const data = await response.json();
+        console.log(data);
+        // Update radar chart
+        radarChart = new Chart(radarChartCanvas, {
+            type: 'radar',
+            data: {
+                labels: Object.keys(data),
+                datasets: [{
+                    label: player['Player'],
+                    data: Object.values(data),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scale: {
+                    ticks: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        });
+}
+
+function toggleMode() {
+    const lightModeIcon = document.getElementById('lightModeIcon');
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    const currentMode = lightModeIcon.style.display === 'none' ? 'dark' : 'light';
+    document.body.classList.toggle('dark-theme');
+
+    if (currentMode === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        lightModeIcon.style.display = 'inline'; 
+        darkModeIcon.style.display = 'none'; 
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        lightModeIcon.style.display = 'none'; 
+        darkModeIcon.style.display = 'inline';
+    }
 }
