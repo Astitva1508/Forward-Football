@@ -4,10 +4,6 @@
     margin:0px;
     padding:0px;
 }
-.chart-container {
-    /* width: 50%; */
-    margin: auto;
-}
 
 .nav{
     background-color: rgb(240,232,235);
@@ -23,4 +19,8 @@
   padding:10px;
   max-width: 40%;
   height: auto;
+}
+
+.content-area{
+    margin:20px;
 }
