@@ -1,0 +1,26 @@
+/* Add your CSS styles here */
+
+*{
+    margin:0px;
+    padding:0px;
+}
+.chart-container {
+    /* width: 50%; */
+    margin: auto;
+}
+
+.nav{
+    background-color: rgb(240,232,235);
+    /* border-bottom: ; */
+}
+
+.progress{
+    width: 80%;
+}
+
+.player-img{
+  margin:auto;
+  padding:10px;
+  max-width: 40%;
+  height: auto;
+}
