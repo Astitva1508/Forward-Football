@@ -1,4 +1,5 @@
 let radarChart;
+let polarAreaChart;
 document.addEventListener('DOMContentLoaded', function () {
     fetch('/get_data')
         .then(response => response.json())
@@ -9,39 +10,34 @@ document.addEventListener('DOMContentLoaded', function () {
             renderBallControlPressureChart(data);
             renderPlayerCards(data[0]);
             renderRadarChart(data[0]);
+            renderPolarAreaChart(data[0]);
         })
         .catch(error => console.error('Error fetching data:', error));
 });
 
-const renderDribbleLengthChart=data=>{
-    // Define height groups and initialize dictionaries to store dribble skills and counts for each group
+const renderDribbleLengthChart = data => {
     const heightGroups = ['145-150', '151-155', '156-160', '161-165', '166-170', '171-175', '176-180'];
     const dribbleSkillsByHeight = {};
     const dribbleSkillCounts = {};
 
-    // Initialize dictionaries
     heightGroups.forEach(group => {
         dribbleSkillsByHeight[group] = 0;
         dribbleSkillCounts[group] = 0;
     });
 
-    // Iterate through players to calculate total dribble skills and counts for each height group
     data.forEach(player => {
         const height = player.Length;
         const dribbleSkill = player['Dribble Skills'];
 
-        // Find the appropriate height group for the player
         const group = heightGroups.find(group => {
             const [min, max] = group.split('-');
             return height >= min && height <= max;
         });
 
-        // Add dribble skill to the total and increase count for the height group
         dribbleSkillsByHeight[group] += dribbleSkill;
         dribbleSkillCounts[group]++;
     });
 
-    // Calculate mean dribble skills for each height group
     const meanDribbleSkills = heightGroups.map(group => {
         const totalDribbleSkills = dribbleSkillsByHeight[group];
         const count = dribbleSkillCounts[group];
@@ -65,14 +61,15 @@ const renderDribbleLengthChart=data=>{
         options: {
             scales: {
                 y: {
-                    suggestedMin: 25, 
+                    suggestedMin: 25,
                     suggestedMax: 35,
-                    stepSize:2
+                    stepSize: 2
                 }
             }
         }
     });
 }
+
 
 const renderPassingPressureChart=data=>{
     // Extracting required data for chart
@@ -142,26 +139,6 @@ function renderBallControlPressureChart(data) {
         }
     });
 }
-
-$('#searchInput').on('input', function (e) 
-    {
-    let searchQuery = $(this).val().toLowerCase();
-        fetch('/get_data')
-            .then(response => response.json())
-            .then(data => {
-                console.log(searchQuery)
-                // Filter players based on search query
-                let filteredPlayers = data.filter(function (player) {
-                    return player.Player.toLowerCase().includes(searchQuery);
-                });
-
-                // Render filtered player cards
-                renderPlayerCards(filteredPlayers[0]);
-                renderRadarChart(filteredPlayers[0])
-               
-            })
-            .catch(error => console.error('Error fetching data:', error)); 
-});
 
 function renderPlayerCards(player) {
     $('#playerCard').empty();
@@ -245,17 +222,24 @@ async function renderRadarChart(player) {
         // Fetch percentile data from API
         const response = await fetch(`/percentiles?id=${player['id']}`);
         const data = await response.json();
-        console.log(data);
         // Update radar chart
         radarChart = new Chart(radarChartCanvas, {
-            type: 'radar',
+            type: 'polarArea',
             data: {
                 labels: Object.keys(data),
                 datasets: [{
                     label: player['Player'],
                     data: Object.values(data),
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: [
+                        'rgba(255, 99, 132,0.2)',
+                        'rgba(75, 192, 192,0.2)',
+                        'rgba(255, 205, 86,0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132,1)',
+                        'rgba(75, 192, 192,1)',
+                        'rgba(255, 205, 86,1)',
+                    ],
                     borderWidth: 1
                 }]
             },
@@ -269,6 +253,40 @@ async function renderRadarChart(player) {
                 }
             }
         });
+}
+
+function renderPolarAreaChart(player) {
+    if (polarAreaChart) polarAreaChart.destroy();
+    const polarChartCanvas = document.getElementById('polarAreaChart');
+
+    const bmiPlayer1 = calculateBMI(player.Weight, player.Length);
+    polarAreaChart = new Chart(polarChartCanvas, {
+        type: 'radar',
+        data: {
+            labels: ['BMI', 'Dribble Skills', 'Ball Control', 'Passing under Pressure'],
+            datasets: [{
+                label: player.Player,
+                data: [
+                    bmiPlayer1,
+                    player['Dribble Skills'],
+                    player['Ball Control'],
+                    player['Passing Under Pressure']
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    });
 }
 
 function toggleMode() {
@@ -286,4 +304,68 @@ function toggleMode() {
         lightModeIcon.style.display = 'none'; 
         darkModeIcon.style.display = 'inline';
     }
+}
+
+
+$('#searchCompareButton').on('click', async function (e) {
+    let searchQuery = $("#searchInputCompare").val().toLowerCase();
+    const response = await fetch(`/get_data`);
+    const data = await response.json();
+    
+    fetch('/get_data')
+        .then(response => response.json())
+        .then(data => {
+            // Filter players based on search query
+            let filteredPlayers = data.filter(function (player) {
+                return player.Player.toLowerCase().includes(searchQuery);
+            });
+            comparePlayers(filteredPlayers[0]);
+
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+
+$('#searchInputButton').on('click', function (e) {
+    let searchQuery = $("#searchInput").val().toLowerCase();
+    console.log(searchQuery);
+    const data  = 
+    fetch('/get_data')
+        .then(response => response.json())
+        .then(data => {
+            // Filter players based on search query
+            let filteredPlayers = data.filter(function (player) {
+                return player.Player.toLowerCase().includes(searchQuery);
+            });
+            if (length(filteredPlayers) > 0) {
+                renderPlayerCards(filteredPlayers[0]);
+                renderRadarChart(filteredPlayers[0])
+                renderPolarAreaChart(filteredPlayers[0])
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+
+
+async function comparePlayers(player) {
+
+    const bmiPlayer1 = calculateBMI(player.Weight, player.Length);
+
+    const newData = {
+        label:player.Player,
+        data:[
+            bmiPlayer1,
+            player['Dribble Skills'],
+            player['Ball Control'],
+            player['Passing Under Pressure']
+        ]
+    }
+
+    polarAreaChart.data.datasets[1]= newData;
+    polarAreaChart.update();
+}
+
+function calculateBMI(weight, length) {
+    const heightMeters = length / 100;
+    const bmi = weight / (heightMeters * heightMeters);
+    return bmi;
 }

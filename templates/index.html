@@ -32,11 +32,19 @@
         <div class="col-md-5 m-1 stat-item">
             <div class="form-group d-flex justify-content-end my-2">
                 <input type="text" id="searchInput" class="form-control search d-inline" placeholder="Search by player name...">
-                <button class="mx-2"><i class="fas fa-search"></i></button>
-
+                <button class="mx-2" id="searchInputButton"><i class="fas fa-search"></i></button>
             </div>
             <div id="playerCard" class="my-2">
                 
+            </div>
+        </div>
+        <div class="col-md-5 m-2 p-2 stat-item">
+            <div class="form-group d-flex justify-content-end my-2">
+                <input type="text" id="searchInputCompare" class="form-control search d-inline" placeholder="Search by player name...">
+                <button class="mx-2" id="searchCompareButton"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="chart-container my-2">
+            <canvas id="polarAreaChart"></canvas>
             </div>
         </div>
         <div class="col-md-5 m-2 p-2 stat-item">
@@ -59,7 +67,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/7e45dd5b4b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
 
