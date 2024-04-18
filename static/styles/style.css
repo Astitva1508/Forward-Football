@@ -15,7 +15,6 @@
   --clr-primary: #ffa7c4;
   --clr-grey: #cbd5e1;
   --clr-testing: #303542;
-  --clr-shadow: rgba(1,1,1,0.5)
 }
 
 *,
@@ -37,6 +36,7 @@ body {
 
 .nav{
     background-color: var(--clr-testing);
+    color:var(--clr-font)
 }
 
 .stat-item{
@@ -75,9 +75,10 @@ body {
   color:var(--clr-font);
 }
 
-.mode{
+#mode{
     border:0;
     font-size:30px;
     background:none;
+    color:var(--clr-font)
 }
 

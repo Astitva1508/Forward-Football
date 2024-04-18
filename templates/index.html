@@ -15,27 +15,26 @@
         <img src="/static/data/logo.png" alt="Logo" width="60" height="60" class="d-inline-block">
         <strong style="font-size: larger;">Forward Football</strong>
         </a>
-        <div class="mode m-2">
-            <i class="fas fa-sun" id="lightModeIcon" onclick="toggleMode();"></i>
-            <i class="fas fa-moon" id="darkModeIcon" style="display: none;" onclick="toggleMode();"></i>
+        <button id="mode" class="m-2">
+            <i class="fas fa-sun" id="lightModeIcon"></i>
+            <i class="fas fa-moon" id="darkModeIcon" style="display: none;"></i>
         </button>
     </div>
     </nav>
     <div class="content-area">
-        <h3 class="m-3 p-2 text-center">Welcome to Dashboard</h3>
-        <div id="stats" class = "row justify-content-around container-fluid">
-        <div class="col-md-5 m-2 p-2 stat-item">
+        <div class = "row justify-content-around container-fluid">
+        <h2 class="col-11 stat-item">Hey Pep, Welcome to Dashboard</h3>
+        <div class="col-sm-8 col-md-5 m-2 p-2 stat-item">
             <div class="chart-container">
             <canvas id="radarChart"></canvas>
             </div>
         </div>
-        <div class="col-md-5 m-1 stat-item">
+        <div class="col-md-5 m-2 stat-item">
             <div class="form-group d-flex justify-content-end my-2">
                 <input type="text" id="searchInput" class="form-control search d-inline" placeholder="Search by player name...">
                 <button class="mx-2" id="searchInputButton"><i class="fas fa-search"></i></button>
             </div>
             <div id="playerCard" class="my-2">
-                
             </div>
         </div>
         <div class="col-md-5 m-2 p-2 stat-item">
@@ -67,7 +66,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/7e45dd5b4b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script type = "module" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
 
