@@ -3,10 +3,12 @@ export const renderBallControlPressureChart = (data) => {
 
     new Chart(ctx, {
         type: 'scatter',
+        label:"Passing Under Pressure ",
         data: {
+            labels:data.map((player)=>player.Player),
             datasets: [{
-                label: 'Ball Control vs Passing Under Pressure',
-                data: data.map(player => ({ x: player['Passing Under Pressure'], y: player['Ball Control'] })),
+                label:"Passing Under Pressure v/s Ball Control",
+                data: data.map(player => ({ y: 100-player['Passing Under Pressure'], x: player['Ball Control'] })),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
@@ -16,7 +18,14 @@ export const renderBallControlPressureChart = (data) => {
             scales: {
                 x: {
                     type: 'linear',
-                    position: 'bottom'
+                    position: 'bottom',
+                    grid:{
+                        color: 'rgba(128,128,128,0.2)'
+                    }
+                },y:{
+                    grid:{
+                        color: "rgba(128,128,128,0.2)"
+                    }
                 }
             }
         }

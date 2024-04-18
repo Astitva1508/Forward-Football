@@ -1,7 +1,7 @@
 export const renderPolarAreaChart = (player, polarAreaChart) => {
     if (polarAreaChart) polarAreaChart.destroy();
     const polarChartCanvas = document.querySelector('#polarAreaChart');
-
+    const bgColor = window.getComputedStyle(polarChartCanvas).backgroundColor
     const heightMeters = player.Length / 100;
     const bmi = player.Weight / (heightMeters * heightMeters);
 
@@ -23,11 +23,20 @@ export const renderPolarAreaChart = (player, polarAreaChart) => {
             }]
         },
         options: {
-            scale: {
-                ticks: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 100
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(128,128,128,0.2)'
+                    },
+                    angleLines:{
+                        color: 'rgba(128,128,128,0.2)'
+                    },
+                    ticks:{
+                        backdropColor:bgColor,
+                        beginAtZero: true,
+                        min: 0,
+                        max: 100
+                    }
                 }
             }
         }

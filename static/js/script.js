@@ -1,6 +1,5 @@
 import {renderPlayerCards} from '../modules/playerCard.js'
 import { renderDribbleLengthChart } from '../modules/dribbleCard.js';
-// import { renderPassingPressureChart } from '../modules/passingPressureCard.js';
 import { renderBallControlPressureChart } from '../modules/ballControlPressureCard.js';
 import { renderRadarChart } from '../modules/radarCard.js';
 import { renderPolarAreaChart } from '../modules/compareCard.js';
@@ -93,8 +92,11 @@ const comparePlayers = (player) => {
             bmi,
             player['Dribble Skills'],
             player['Ball Control'],
-            player['Passing Under Pressure']
-        ]
+            player['Passing Under Pressure'],
+        ], 
+        backgroundColor: 'rgba(75, 192, 192,0.2)',
+        borderColor: 'rgba(75, 192, 192,1)',
+        borderWidth: 1
     };
 
     polarAreaChart.data.datasets[1] = newData;

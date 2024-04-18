@@ -46,7 +46,14 @@ export const renderDribbleLengthChart = (data) => {
                 y: {
                     suggestedMin: 25,
                     suggestedMax: 35,
-                    stepSize: 2
+                    stepSize: 2,
+                    grid: {
+                        color: 'rgba(128,128,128,0.2)'
+                    }
+                },x:{
+                    grid: {
+                        color: 'rgba(128,128,128,0.2)'
+                    }
                 }
             }
         }

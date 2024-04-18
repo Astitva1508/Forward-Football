@@ -66,8 +66,14 @@ body {
 
 .search {
   width: 200px;
+  color:var(--clr-font);
+  background-color: rgba(255,255,255,0.9);
+  border: 0;
+  border: 5px;
 }
+.player-card{
 
+}
 .search + button {
   font-size: 20px;
   border: none;

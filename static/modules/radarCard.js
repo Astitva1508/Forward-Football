@@ -1,6 +1,7 @@
 export const renderRadarChart = (playerName, data, radarChart) => {
     if (radarChart) radarChart.destroy();
     const radarChartCanvas = document.querySelector('#radarChart');
+    const bgColor = window.getComputedStyle(radarChartCanvas).backgroundColor
     radarChart = new Chart(radarChartCanvas, {
         type: 'polarArea',
         data: {
@@ -22,11 +23,20 @@ export const renderRadarChart = (playerName, data, radarChart) => {
             }]
         },
         options: {
-            scale: {
-                ticks: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 100
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(128,128,128,0.2)'
+                    },
+                    angleLines: {
+                        color: 'rgba(128,128,128,0.2)'
+                    },
+                    ticks: {
+                        backdropColor:bgColor,
+                        beginAtZero: true,
+                        min: 0,
+                        max: 100
+                    }
                 }
             }
         }
