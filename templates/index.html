@@ -17,12 +17,9 @@
 </head>
 
 <body>
-    <nav class="navbar nav">
+    <nav class="navbar nav mt-0">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="https://forward.football/">
-                <img src="/static/data/logo.png" alt="Logo" width="60" height="60" class="d-inline-block">
-                <strong style="font-size: larger;">Forward Football</strong>
-            </a>
+            <h2>Forward Football</h2>
             <button id="mode" class="m-2">
                 <i class="fas fa-sun" id="lightModeIcon"></i>
                 <i class="fas fa-moon" id="darkModeIcon" style="display: none;"></i>
@@ -30,20 +27,37 @@
         </div>
     </nav>
     <div class="content-area">
-            <h2 class="stat-item m-2">Hey Pep, Welcome to Dashboard</h2>
-            <div class="row m-2 justify-content-between">
-                <div class="col-md-6">
+            <p class="m-4 heading">Hey Pep, <span class="fs-1">Welcome</span> to Dashboard</h2>
+            <div class="row m-4 justify-content-between">
+                <div class="col-md-5">
                     <p class="subh m-2">Review Individual Stats</p>
+                    <div class="form-group d-flex justify-content-end my-2">
+                        <input type="text" id="searchInput" class="p-1 search d-inline" placeholder="Search for player">
+                        <button class="mx-2" id="searchInputButton"><i class="fas fa-search"></i></button>
+                    </div>
                     <div class="p-2 stat-item">
-                        <div class="form-group d-flex justify-content-end my-2">
-                            <input type="text" id="searchInput" class="p-1 search d-inline"
-                                placeholder="Search for player">
-                            <button class="mx-2" id="searchInputButton"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div id="playerCard" class="my-2">
+                        <div id="playerCard" class="my-2 mx-3 px-2">
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <p class="subh m-2">Compare with other players</p>
+                    <div class="form-group d-flex justify-content-end my-2">
+                        <input type="text" id="searchInputCompare" class="p-1 search d-inline" placeholder="Search for second player">
+                        <button class="mx-2" id="searchCompareButton"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="p-2 stat-item">
+                
+                        <div class="chart-container my-2">
+                            <canvas id="polarAreaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row m-4">
                 <div class="col-md-6">
                     <p class="subh m-2">Show Percentile Rankings</p>
                     <div class="p-2 stat-item">
@@ -57,39 +71,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-2">
-                <div class="col-md-5">
-                    <p class="subh m-2">Compare with other players</p>
-                    <div class="p-2 stat-item">
-                        <div class="form-group d-flex justify-content-end my-2">
-                            <input type="text" id="searchInputCompare" class="p-1 search d-inline"
-                                placeholder="Search for second player">
-                            <button class="mx-2" id="searchCompareButton"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="chart-container my-2">
-                            <canvas id="polarAreaChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row m-2 justify-content-between">
+            <div class="row m-4 justify-content-between">
                 <div class="subh m-2">See Advanced Insights</div>
                 <div class="col-md-6">
                     <div class="chart-container p-2 stat-item">
                         <canvas id="ballControlPressureChart"></canvas>
-                        <div class="cardInfo">The data suggests that players with better ball control tend to have better passing performance
+                        <div class="card-info">The data suggests that players with better ball control tend to have better passing performance
                             under pressure</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="chart-container p-2 stat-item">
                         <canvas id="dribbleLengthChart"></canvas>
-                        <div class="cardInfo">The data suggests that players with smaller height tend to have better dribbling skills</div>
+                        <div class="card-info">The data suggests that players with smaller height tend to have better dribbling skills</div>
                     </div>
                 </div>
             </div>
     </div>
-    <footer class="mt-4 text-center fs-6">
+    <footer class="mt-4 mb-2 text-center fs-6">
         Made With <i class="fas fa-heart fs-6" style="color: red"></i></span> by Astitva
     </footer>
 </body>
