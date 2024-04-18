@@ -1,4 +1,4 @@
-export const renderDribbleLengthChart = data => {
+export const renderDribbleLengthChart = (data) => {
     const heightGroups = ['145-150', '151-155', '156-160', '161-165', '166-170', '171-175', '176-180'];
     const dribbleSkillsByHeight = {};
     const dribbleSkillCounts = {};
@@ -27,7 +27,7 @@ export const renderDribbleLengthChart = data => {
         return count === 0 ? 0 : totalDribbleSkills / count;
     });
 
-    const ctx = document.getElementById('dribbleLengthChart').getContext('2d');
+    const ctx = document.querySelector('#dribbleLengthChart').getContext('2d');
 
     new Chart(ctx, {
         type: 'bar',
@@ -51,4 +51,4 @@ export const renderDribbleLengthChart = data => {
             }
         }
     });
-}
+};

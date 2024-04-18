@@ -1,16 +1,9 @@
-export const renderPassingPressureChart = data => {
-    const midfielders = data.filter(({ Position }) => {
-        return Position.charAt(Position.length - 1) === 'M'
-    }).length;
-    const defenders = data.filter(({ Position }) => {
-        return Position.charAt(Position.length - 1) === 'B'
-    }).length;
-    const forwards = data.filter(({ Position }) => {
-        return Position.charAt(Position.length - 1) === 'F'
-    }).length;
+export const renderPassingPressureChart = (data) => {
+    const midfielders = data.filter(({ Position }) => Position.charAt(Position.length - 1) === 'M').length;
+    const defenders = data.filter(({ Position }) => Position.charAt(Position.length - 1) === 'B').length;
+    const forwards = data.filter(({ Position }) => Position.charAt(Position.length - 1) === 'F').length;
 
-
-    const ctx = document.getElementById('passingPressureChart').getContext('2d');
+    const ctx = document.querySelector('#passingPressureChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -35,4 +28,4 @@ export const renderPassingPressureChart = data => {
             responsive: true
         }
     });
-}
+};

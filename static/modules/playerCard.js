@@ -1,7 +1,13 @@
-export const renderPlayerCards = (player) =>{
-    $('#playerCard').empty();
-    $('#playerCard').append(playerCard(player));
+// export const renderPlayerCards = (player) =>{
+//     document.querySelector('#playerCard').empty();
+//     document.querySelector('#playerCard').append(playerCard(player));
+// };
+
+export const renderPlayerCards = (player) => {
+  const playerCardContainer = document.querySelector('#playerCard');
+  playerCardContainer.innerHTML = playerCard(player);
 };
+
 
 export const playerCard = (player) =>{
     let playerCardHtml =

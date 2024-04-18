@@ -1,14 +1,12 @@
-export async function renderRadarChart(player,radarChart) {
+export const renderRadarChart = (playerName, data, radarChart) => {
     if (radarChart) radarChart.destroy();
-    const radarChartCanvas = document.getElementById('radarChart');
-    const response = await fetch(`/percentiles?id=${player['id']}`);
-    const data = await response.json();
+    const radarChartCanvas = document.querySelector('#radarChart');
     radarChart = new Chart(radarChartCanvas, {
         type: 'polarArea',
         data: {
             labels: Object.keys(data),
             datasets: [{
-                label: player['Player'],
+                label: playerName,
                 data: Object.values(data),
                 backgroundColor: [
                     'rgba(255, 99, 132,0.2)',
@@ -33,4 +31,5 @@ export async function renderRadarChart(player,radarChart) {
             }
         }
     });
-}
+    return radarChart;
+};

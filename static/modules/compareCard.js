@@ -1,9 +1,10 @@
-export function renderPolarAreaChart(player,polarAreaChart) {
+export const renderPolarAreaChart = (player, polarAreaChart) => {
     if (polarAreaChart) polarAreaChart.destroy();
-    const polarChartCanvas = document.getElementById('polarAreaChart');
+    const polarChartCanvas = document.querySelector('#polarAreaChart');
 
     const heightMeters = player.Length / 100;
     const bmi = player.Weight / (heightMeters * heightMeters);
+
     polarAreaChart = new Chart(polarChartCanvas, {
         type: 'radar',
         data: {
@@ -31,4 +32,6 @@ export function renderPolarAreaChart(player,polarAreaChart) {
             }
         }
     });
-}
+
+    return polarAreaChart;
+};

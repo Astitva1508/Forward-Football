@@ -1,9 +1,5 @@
-export function renderBallControlPressureChart(data) {
-    const ctx = document.getElementById('ballControlPressureChart').getContext('2d');
-
-    // Extracting required data for chart
-    const ballControl = data.map(player => player['Ball Control']);
-    const passingPressure = data.map(player => player['Passing Under Pressure']);
+export const renderBallControlPressureChart = (data) => {
+    const ctx = document.querySelector('#ballControlPressureChart').getContext('2d');
 
     new Chart(ctx, {
         type: 'scatter',
@@ -25,4 +21,4 @@ export function renderBallControlPressureChart(data) {
             }
         }
     });
-}
+};
