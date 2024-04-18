@@ -1,6 +1,6 @@
 import {renderPlayerCards} from '../modules/playerCard.js'
 import { renderDribbleLengthChart } from '../modules/dribbleCard.js';
-import { renderPassingPressureChart } from '../modules/passingPressureCard.js';
+// import { renderPassingPressureChart } from '../modules/passingPressureCard.js';
 import { renderBallControlPressureChart } from '../modules/ballControlPressureCard.js';
 import { renderRadarChart } from '../modules/radarCard.js';
 import { renderPolarAreaChart } from '../modules/compareCard.js';
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         .then(response => response.json())
         .then(data => {
             renderDribbleLengthChart(data);
-            renderPassingPressureChart(data);
+            // renderPassingPressureChart(data);
             renderBallControlPressureChart(data);
             renderPlayerCards(data[0]);
             polarAreaChart = renderPolarAreaChart(data[0],polarAreaChart);

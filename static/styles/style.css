@@ -81,3 +81,11 @@ body {
   background: none;
   color: var(--clr-font);
 }
+
+.subh{
+  font-size:1.75rem;
+}
+
+.card-info{
+  font-size:1rem;
+}
