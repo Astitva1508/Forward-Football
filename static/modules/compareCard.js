@@ -35,7 +35,26 @@ export const renderPolarAreaChart = (player, polarAreaChart) => {
                         backdropColor:bgColor,
                         beginAtZero: true,
                         min: 0,
-                        max: 100
+                        max: 100,
+                        color:"#808080",
+                        font:{
+                            size:10
+                        }
+                    },
+                    pointLabels:{
+                        color:"#808080",
+                        font:{
+                            size:12
+                        }
+                    }
+                }
+            }, plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 14,
+                        },
+                        color: "#808080"
                     }
                 }
             }

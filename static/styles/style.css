@@ -91,7 +91,7 @@ body {
 }
 
 .subh{
-  font-size:1.75rem;
+  font-size:1.6rem;
 }
 
 .heading{
@@ -99,6 +99,6 @@ body {
 }
 
 .card-info{
-  font-size:1rem;
-  margin-top: 2rem;
+  font-size: 0.9rem;
+  margin-top: 1.75rem;
 }

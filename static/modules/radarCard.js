@@ -35,7 +35,21 @@ export const renderRadarChart = (playerName, data, radarChart) => {
                         backdropColor:bgColor,
                         beginAtZero: true,
                         min: 0,
-                        max: 100
+                        max: 100,
+                        color: '#808080',
+                        font:{
+                            size:10
+                        }
+                    },
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 14,
+                        },
+                        color: "#808080"
                     }
                 }
             }

@@ -27,6 +27,15 @@ export const renderBallControlPressureChart = (data) => {
                         color: "rgba(128,128,128,0.2)"
                     }
                 }
+            }, plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 14,
+                        },
+                        color: "#808080"
+                    }
+                }
             }
         }
     });
