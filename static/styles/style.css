@@ -64,7 +64,7 @@ body {
 }
 
 .content-area {
-  margin: 0rem 6rem;
+  margin: 0rem 7.5rem;
 }
 
 .search {
@@ -98,6 +98,10 @@ body {
   font-size:2rem;
 }
 
+.heading span{
+  font-size:2.5rem;
+}
+
 .card-info{
   font-size: 0.9rem;
   margin-top: 1.75rem;
@@ -115,7 +119,7 @@ body {
 
 @media screen and (max-width: 576px) {
     .content-area {
-        margin: 0rem 2rem;
+        margin: 0rem 1rem;
     }
 }
 

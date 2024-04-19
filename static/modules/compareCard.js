@@ -8,14 +8,14 @@ export const renderPolarAreaChart = (player, polarAreaChart) => {
     polarAreaChart = new Chart(polarChartCanvas, {
         type: 'radar',
         data: {
-            labels: ['BMI', 'Dribble Skills', 'Ball Control', 'Passing under Pressure'],
+            labels: ['Dribble Skills', 'BMI', 'Passing under Pressure', 'Ball Control', ],
             datasets: [{
                 label: player.Player,
                 data: [
-                    bmi,
                     player['Dribble Skills'],
+                    bmi,
+                    player['Passing Under Pressure'],
                     player['Ball Control'],
-                    player['Passing Under Pressure']
                 ],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
