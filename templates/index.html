@@ -29,40 +29,39 @@
     <div class="content-area">
             <p class="m-4 heading">Hey Pep, <span class="fs-1">Welcome</span> to Dashboard</h2>
             <div class="row m-4 justify-content-between">
-                <div class="col-md-5">
-                    <p class="subh m-2">Review Individual Stats</p>
+                <div class="col-md-6 col-lg-5">
+                    <p class="subh m-2">View Individual Stats</p>
                     <div class="form-group d-flex justify-content-end my-2">
                         <input type="text" id="searchInput" class="p-1 search d-inline" placeholder="Search for player">
                         <button class="mx-2" id="searchInputButton"><i class="fas fa-search"></i></button>
                     </div>
                     <div class="p-2 stat-item">
-                        <div id="playerCard" class="my-2 mx-3 px-2">
+                        <div id="playerCard" class="center my-2 mx-3 px-2">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <p class="subh m-2">Compare with other players</p>
+                    <p class="subh m-2">Compare with Others</p>
                     <div class="form-group d-flex justify-content-end my-2">
                         <input type="text" id="searchInputCompare" class="p-1 search d-inline" placeholder="Search for second player">
                         <button class="mx-2" id="searchCompareButton"><i class="fas fa-search"></i></button>
                     </div>
                     <div class="p-2 stat-item">
-                
                         <div class="chart-container my-2">
-                            <canvas id="polarAreaChart"></canvas>
+                            <canvas id="polarAreaChart" class="center"></canvas>
                         </div>
                     </div>
                 </div>
 
             </div>
             
-            <div class="row m-4">
+            <div class="row m-3">
                 <div class="col-md-6">
                     <p class="subh m-2">Show Percentile Rankings</p>
                     <div class="p-2 stat-item">
                         <div class="chart-container">
-                            <canvas id="radarChart"></canvas>
+                            <canvas id="radarChart" class="center"></canvas>
                         </div>
                         <div class="card-info">
                             The percentile rankings of player shown are compared to other players which play in the same
@@ -71,18 +70,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-4 justify-content-between">
+            <div class="row m-3 justify-content-between">
                 <div class="subh m-2">See Advanced Insights</div>
-                <div class="col-md-6">
+                <div class="col-md-6 my-2">
                     <div class="chart-container p-2 stat-item">
-                        <canvas id="ballControlPressureChart"></canvas>
+                        <canvas id="ballControlPressureChart" class="center"></canvas>
                         <div class="card-info">The data suggests that players with better ball control tend to have better passing performance
                             under pressure</div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 my-2">
                     <div class="chart-container p-2 stat-item">
-                        <canvas id="dribbleLengthChart"></canvas>
+                        <canvas id="dribbleLengthChart" class="center"></canvas>
                         <div class="card-info">The data suggests that players with smaller height tend to have better dribbling skills</div>
                     </div>
                 </div>
