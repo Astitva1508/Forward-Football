@@ -6,8 +6,7 @@ This is a football player analytics dashboard developed using Flask and Chart.js
 
 ## Getting Started
 
-1. Clone the repository to your local machine: 
-git clone git@github.com:Astitva1508/Forward-Football.git
+1. Clone the repository to your local machine
 
 2. Install dependencies:
 pip install -r requirements.txt
